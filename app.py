@@ -81,6 +81,7 @@ app.add_middleware(
         "http://localhost:8000",
         "http://127.0.0.1:5500",  # Live Server default port
         "http://localhost:5500",
+        "https://nextgen-ed.netlify.app",  # Your actual Netlify URL
         "*"  # Fallback for development
     ],
     allow_credentials=True,

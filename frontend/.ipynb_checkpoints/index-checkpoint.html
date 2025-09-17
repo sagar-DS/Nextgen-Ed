@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Teaching Assistant - SIH 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="webcam-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Scan Document</h2>
+            <video id="webcam-video" autoplay playsinline></video>
+            <button id="capture-btn" class="btn btn-primary"><i class="fas fa-camera"></i> Capture Photo</button>
+            <button id="close-modal-btn" class="btn btn-secondary" style="margin-top: 8px;">Cancel</button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h1>🎓 AI Teaching Assistant</h1>
+                <p>SIH 2025</p>
+            </header>
+            <nav class="sidebar-nav">
+                <button class="nav-tab active" data-tab="workbench">
+                    <i class="fas fa-tools"></i> Teacher's Workbench
+                </button>
+                <button class="nav-tab" data-tab="grader">
+                    <i class="fas fa-user-graduate"></i> Student Grader
+                </button>
+            </nav>
+            
+            <div id="sidebar-content">
+                </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="status-bar">
+                <p id="status-text">Welcome! Ready to get started.</p>
+            </div>
+            
+            <div class="content-area">
+                <div id="generated-content-view">
+                    <div class="content-column">
+                        <h2>📝 Generated Question Paper</h2>
+                        <textarea id="generated-questions-output" placeholder="AI-generated questions will appear here..."></textarea>
+                    </div>
+                    <div class="content-column">
+                        <h2>🔑 Generated Reference Answers</h2>
+                        <textarea id="generated-answers-output" placeholder="AI-generated answers will appear here..."></textarea>
+                    </div>
+                </div>
+
+                <div id="grading-results-view" class="hidden">
+                    <div class="grading-grid">
+                        <div class="result-card">
+                            <h3><i class="fas fa-pen-fancy"></i> Handwriting Legibility</h3>
+                            <p id="legibility-output">Awaiting analysis...</p>
+                        </div>
+                        <div class="result-card">
+                             <h3><i class="fas fa-check-double"></i> AI Fairness Check</h3>
+                            <p id="fairness-output">Awaiting analysis...</p>
+                        </div>
+                    </div>
+                     <div class="result-card ocr-card">
+                        <h3><i class="fas fa-eye"></i> Extracted Text (OCR)</h3>
+                        <textarea id="ocr-output" readonly>Awaiting analysis...</textarea>
+                    </div>
+                    <div class="result-card evaluation-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Final Evaluation</h3>
+                        <div id="evaluation-output">Awaiting analysis...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

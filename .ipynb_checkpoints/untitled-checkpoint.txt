@@ -1,0 +1,16 @@
+def __init__(self):
+        self.doc_parser = DocumentParser()
+        self.ai_core = None
+        self.db_file = "questions.json"
+        
+        try:
+            with open("config.json", 'r') as f:
+                config = json.load(f)
+                api_key = config.get("GEMINI_API_KEY")
+            if not api_key or api_key == "YOUR_API_KEY_HERE":
+                raise ValueError("API key not found or is a placeholder in config.json")
+            self.ai_core = AICore(api_key=api_key)
+        except (FileNotFoundError, ValueError) as e:
+            print(f"CRITICAL ERROR: {e}. The AI Core could not be initialized.")
+            
+        self.question_bank = self._load_question_bank()

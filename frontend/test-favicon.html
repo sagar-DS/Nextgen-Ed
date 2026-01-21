@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Test - Nextgen Ed</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .favicon-test { display: inline-block; margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 3px; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🎓 Favicon Test for Netlify</h1>
+    <p>This page tests if your favicon files are accessible and working correctly.</p>
+    
+    <div class="test-section">
+        <h3>📁 Favicon File Tests</h3>
+        <button onclick="testFaviconFiles()">Test All Favicon Files</button>
+        <div id="favicon-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>👁️ Visual Favicon Tests</h3>
+        <p>Check if these favicon files display correctly:</p>
+        <div class="favicon-test">
+            <h4>favicon.ico</h4>
+            <img src="favicon.ico" alt="favicon.ico" style="width: 32px; height: 32px; border: 1px solid #ccc;">
+        </div>
+        <div class="favicon-test">
+            <h4>favicon.svg</h4>
+            <img src="favicon.svg" alt="favicon.svg" style="width: 32px; height: 32px; border: 1px solid #ccc;">
+        </div>
+        <div class="favicon-test">
+            <h4>favicon.png</h4>
+            <img src="favicon.png" alt="favicon.png" style="width: 32px; height: 32px; border: 1px solid #ccc;">
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🔗 Direct URL Tests</h3>
+        <p>Test these URLs directly in your browser:</p>
+        <ul>
+            <li><a href="favicon.ico" target="_blank">favicon.ico</a></li>
+            <li><a href="favicon.svg" target="_blank">favicon.svg</a></li>
+            <li><a href="favicon.png" target="_blank">favicon.png</a></li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h3>🌐 Netlify Deployment Test</h3>
+        <p>After deploying to Netlify, test these URLs:</p>
+        <ul>
+            <li><a href="https://nextgen-ed.netlify.app/favicon.ico" target="_blank">https://nextgen-ed.netlify.app/favicon.ico</a></li>
+            <li><a href="https://nextgen-ed.netlify.app/favicon.svg" target="_blank">https://nextgen-ed.netlify.app/favicon.svg</a></li>
+            <li><a href="https://nextgen-ed.netlify.app/favicon.png" target="_blank">https://nextgen-ed.netlify.app/favicon.png</a></li>
+        </ul>
+    </div>
+
+    <script>
+        async function testFaviconFiles() {
+            const results = document.getElementById('favicon-results');
+            results.innerHTML = '<p>Testing favicon files...</p>';
+            
+            const files = ['favicon.ico', 'favicon.svg', 'favicon.png'];
+            let html = '<h4>Favicon File Test Results:</h4>';
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<div class="success" style="padding: 10px; margin: 5px 0; border-radius: 3px;">✅ ${file} - Found (${response.status})</div>`;
+                    } else {
+                        html += `<div class="error" style="padding: 10px; margin: 5px 0; border-radius: 3px;">❌ ${file} - Error (${response.status})</div>`;
+                    }
+                } catch (error) {
+                    html += `<div class="error" style="padding: 10px; margin: 5px 0; border-radius: 3px;">❌ ${file} - Network Error: ${error.message}</div>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        // Auto-run test on page load
+        window.onload = function() {
+            testFaviconFiles();
+        };
+    </script>
+</body>
+</html>

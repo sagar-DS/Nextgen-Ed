@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextgen Ed - SIH 2025</title>
+    <title>Nextgen Ed</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="profile-fixed">
@@ -34,12 +40,16 @@
                     <input type="text" id="dropdown-class-input" placeholder="e.g., Grade 7A">
                 </div>
                 <button id="dropdown-save-btn" class="btn btn-primary"><i class="fas fa-save"></i> Save Profile</button>
-                <button id="open-profile-tab-btn" class="btn btn-secondary" style="margin-top:8px;"><i class="fas fa-id-badge"></i> Open Profile</button>
-                <button id="manage-classes-btn" class="btn btn-secondary" style="margin-top:8px;"><i class="fas fa-people-group"></i> Manage Classes</button>
-                <button id="open-vault-btn" class="btn btn-secondary" style="margin-top:8px;"><i class="fas fa-database"></i> Open Data Vault</button>
+                <button id="open-profile-tab-btn" class="btn btn-secondary" style="margin-top:8px;"><i
+                        class="fas fa-id-badge"></i> Open Profile</button>
+                <button id="manage-classes-btn" class="btn btn-secondary" style="margin-top:8px;"><i
+                        class="fas fa-people-group"></i> Manage Classes</button>
+                <button id="open-vault-btn" class="btn btn-secondary" style="margin-top:8px;"><i
+                        class="fas fa-database"></i> Open Data Vault</button>
             </div>
             <div class="profile-dropdown-footer">
-                <button id="logout-btn" class="btn btn-secondary"><i class="fas fa-right-from-bracket"></i> Log Out</button>
+                <button id="logout-btn" class="btn btn-secondary"><i class="fas fa-right-from-bracket"></i> Log
+                    Out</button>
             </div>
         </div>
     </div>
@@ -47,7 +57,8 @@
     <div id="classes-modal" class="modal-overlay hidden">
         <div class="modal-content" style="max-width: 800px; text-align: left;">
             <h2 style="margin-bottom: 12px;">Manage Classes</h2>
-            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end;">
+            <div class="form-group"
+                style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end;">
                 <div>
                     <label for="new-class-name">Class Name</label>
                     <input type="text" id="new-class-name" placeholder="e.g., Grade 7">
@@ -61,7 +72,9 @@
 
             <div class="form-group" style="margin-top: 8px;">
                 <label for="manage-class-select">Your Classes</label>
-                <select id="manage-class-select"><option value="">-- Select a Class --</option></select>
+                <select id="manage-class-select">
+                    <option value="">-- Select a Class --</option>
+                </select>
             </div>
 
             <div class="grading-grid">
@@ -71,13 +84,18 @@
                 </div>
                 <div class="result-card">
                     <h3><i class="fas fa-user-plus"></i> Bulk Add Students</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 8px;">One per line, format: Name, Email(optional), Roll(optional)</p>
-                    <textarea id="bulk-students-text" placeholder="Jane Doe, jane@school.edu, 1&#10;John Smith, john@school.edu, 2" style="min-height: 160px;"></textarea>
-                    <button id="bulk-add-btn" class="btn btn-primary" style="margin-top: 8px;"><i class="fas fa-upload"></i> Add Students</button>
+                    <p style="color: var(--text-secondary); margin-bottom: 8px;">One per line, format: Name,
+                        Email(optional), Roll(optional)</p>
+                    <textarea id="bulk-students-text"
+                        placeholder="Jane Doe, jane@school.edu, 1&#10;John Smith, john@school.edu, 2"
+                        style="min-height: 160px;"></textarea>
+                    <button id="bulk-add-btn" class="btn btn-primary" style="margin-top: 8px;"><i
+                            class="fas fa-upload"></i> Add Students</button>
                 </div>
             </div>
 
-            <button id="close-classes-modal-btn" class="btn btn-secondary" style="margin-top: 12px; width: auto;">Close</button>
+            <button id="close-classes-modal-btn" class="btn btn-secondary"
+                style="margin-top: 12px; width: auto;">Close</button>
         </div>
     </div>
 
@@ -87,7 +105,8 @@
             <div id="vault-auth-section" class="form-group">
                 <label for="vault-password">Re-enter your password</label>
                 <input type="password" id="vault-password" placeholder="Password">
-                <button id="vault-auth-btn" class="btn btn-primary" style="margin-top: 8px; width: auto;">Unlock</button>
+                <button id="vault-auth-btn" class="btn btn-primary"
+                    style="margin-top: 8px; width: auto;">Unlock</button>
             </div>
             <div id="vault-content" class="hidden">
                 <div class="grading-grid">
@@ -104,7 +123,8 @@
                         <ul id="vault-submissions"></ul>
                     </div>
                 </div>
-                <button id="close-vault-modal-btn" class="btn btn-secondary" style="margin-top: 12px; width: auto;">Close</button>
+                <button id="close-vault-modal-btn" class="btn btn-secondary"
+                    style="margin-top: 12px; width: auto;">Close</button>
             </div>
         </div>
     </div>
@@ -122,7 +142,7 @@
         <aside class="sidebar">
             <header class="sidebar-header">
                 <h1>🎓 Nextgen Ed</h1>
-                <p>SIH 2025</p>
+                <p>AI Powered Learning</p>
             </header>
             <nav class="sidebar-nav">
                 <button class="nav-tab active" data-tab="workbench">
@@ -132,19 +152,22 @@
                     <i class="fas fa-user-graduate"></i> Student Grader
                 </button>
             </nav>
-            
+
             <div id="sidebar-content">
                 <div id="workbench-controls">
                     <div class="result-card" style="margin-bottom: 16px;">
                         <h3><i class="fas fa-list-check"></i> Choose Mode</h3>
                         <div class="form-group">
-                            <label><input type="radio" name="wb-mode" id="mode-generate" checked> Generate from Source (PDF/PPTX/Image)</label>
+                            <label><input type="radio" name="wb-mode" id="mode-generate" checked> Generate from Source
+                                (PDF/PPTX/Image)</label>
                         </div>
                         <div class="form-group">
-                            <label><input type="radio" name="wb-mode" id="mode-upload-gen"> Upload Question Paper → Generate Answers</label>
+                            <label><input type="radio" name="wb-mode" id="mode-upload-gen"> Upload Question Paper →
+                                Generate Answers</label>
                         </div>
                         <div class="form-group">
-                            <label><input type="radio" name="wb-mode" id="mode-upload-both"> Upload Question Paper + Reference Answers</label>
+                            <label><input type="radio" name="wb-mode" id="mode-upload-both"> Upload Question Paper +
+                                Reference Answers</label>
                         </div>
                     </div>
 
@@ -154,23 +177,29 @@
                             <label for="source-file-input">Upload Source Material</label>
                             <div class="file-input-wrapper">
                                 <input type="file" id="source-file-input" accept=".pdf,.pptx,.png,.jpg,.jpeg,.webp">
-                                <label for="source-file-input" class="file-input-label"><i class="fas fa-upload"></i> <span id="source-file-name">Choose file...</span></label>
+                                <label for="source-file-input" class="file-input-label"><i class="fas fa-upload"></i>
+                                    <span id="source-file-name">Choose file...</span></label>
                             </div>
                         </div>
 
-                        <button id="generate-btn" class="btn btn-primary"><i class="fas fa-wand-magic-sparkles"></i> Generate Content</button>
+                        <button id="generate-btn" class="btn btn-primary"><i class="fas fa-wand-magic-sparkles"></i>
+                            Generate Content</button>
 
                         <div class="form-group" style="margin-top: 16px;">
                             <label for="feedback-input">Refinement Feedback (optional)</label>
-                            <textarea id="feedback-input" placeholder="e.g., increase difficulty of question 3, add one MCQ on photosynthesis..."></textarea>
+                            <textarea id="feedback-input"
+                                placeholder="e.g., increase difficulty of question 3, add one MCQ on photosynthesis..."></textarea>
                         </div>
-                        <button id="refine-btn" class="btn btn-secondary"><i class="fas fa-sliders"></i> Refine Content</button>
+                        <button id="refine-btn" class="btn btn-secondary"><i class="fas fa-sliders"></i> Refine
+                            Content</button>
 
                         <div class="form-group" style="margin-top: 16px;">
                             <label for="assignment-name-input">Assignment Name</label>
-                            <input type="text" id="assignment-name-input" placeholder="e.g., Grade 7 Biology - Water Cycle">
+                            <input type="text" id="assignment-name-input"
+                                placeholder="e.g., Grade 7 Biology - Water Cycle">
                         </div>
-                        <button id="approve-btn" class="btn btn-primary"><i class="fas fa-save"></i> Save Assignment</button>
+                        <button id="approve-btn" class="btn btn-primary"><i class="fas fa-save"></i> Save
+                            Assignment</button>
                     </div>
 
                     <div id="wb-section-upload-gen" class="result-card hidden" style="margin-top: 16px;">
@@ -179,38 +208,50 @@
                             <label for="upload-assignment-name">Assignment Name</label>
                             <input type="text" id="upload-assignment-name" placeholder="e.g., Midterm Physics">
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="section-label">Question Paper Upload</div>
                             <div class="file-input-wrapper">
                                 <input type="file" id="upload-question-paper" accept=".pdf,.pptx,.png,.jpg,.jpeg,.webp">
-                                <label for="upload-question-paper" class="file-input-label"><i class="fas fa-upload"></i> <span id="upload-question-paper-name">Choose file...</span></label>
+                                <label for="upload-question-paper" class="file-input-label"><i
+                                        class="fas fa-upload"></i> <span id="upload-question-paper-name">Choose
+                                        file...</span></label>
                             </div>
-                            <button id="scan-question-paper-btn" class="btn btn-secondary" style="margin-top: 8px;"><i class="fas fa-camera"></i> Scan Question Paper with Webcam</button>
+                            <button id="scan-question-paper-btn" class="btn btn-secondary" style="margin-top: 8px;"><i
+                                    class="fas fa-camera"></i> Scan Question Paper with Webcam</button>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="upload-source-material">Source Material for Answer Generation (Optional)</label>
                             <div class="file-input-wrapper">
-                                <input type="file" id="upload-source-material" accept=".pdf,.pptx,.png,.jpg,.jpeg,.webp,.docx,.txt">
-                                <label for="upload-source-material" class="file-input-label"><i class="fas fa-upload"></i> <span id="upload-source-material-name">Choose source file...</span></label>
+                                <input type="file" id="upload-source-material"
+                                    accept=".pdf,.pptx,.png,.jpg,.jpeg,.webp,.docx,.txt">
+                                <label for="upload-source-material" class="file-input-label"><i
+                                        class="fas fa-upload"></i> <span id="upload-source-material-name">Choose source
+                                        file...</span></label>
                             </div>
-                            <small style="color: #666; font-size: 0.85em;">Upload textbooks, notes, or reference materials to help generate better answers</small>
+                            <small style="color: #666; font-size: 0.85em;">Upload textbooks, notes, or reference
+                                materials to help generate better answers</small>
                         </div>
-                        
-                        <button id="generate-answers-from-upload-btn" class="btn btn-primary"><i class="fas fa-robot"></i> Generate Answers from Question Paper</button>
-                        
+
+                        <button id="generate-answers-from-upload-btn" class="btn btn-primary"><i
+                                class="fas fa-robot"></i> Generate Answers from Question Paper</button>
+
                         <div class="form-group" style="margin-top: 16px;">
                             <label for="upload-refine-feedback">Refinement Feedback (optional)</label>
-                            <textarea id="upload-refine-feedback" placeholder="e.g., make answers more detailed, add examples, simplify language..."></textarea>
+                            <textarea id="upload-refine-feedback"
+                                placeholder="e.g., make answers more detailed, add examples, simplify language..."></textarea>
                         </div>
-                        <button id="refine-upload-answers-btn" class="btn btn-secondary"><i class="fas fa-sliders"></i> Refine Generated Answers</button>
-                        
+                        <button id="refine-upload-answers-btn" class="btn btn-secondary"><i class="fas fa-sliders"></i>
+                            Refine Generated Answers</button>
+
                         <div class="form-group" style="margin-top: 16px;">
                             <label for="upload-assignment-name-final">Final Assignment Name</label>
-                            <input type="text" id="upload-assignment-name-final" placeholder="e.g., Midterm Physics - Final">
+                            <input type="text" id="upload-assignment-name-final"
+                                placeholder="e.g., Midterm Physics - Final">
                         </div>
-                        <button id="save-upload-assignment-btn" class="btn btn-primary"><i class="fas fa-save"></i> Save Assignment</button>
+                        <button id="save-upload-assignment-btn" class="btn btn-primary"><i class="fas fa-save"></i> Save
+                            Assignment</button>
                     </div>
 
                     <div id="wb-section-upload-both" class="result-card hidden" style="margin-top: 16px;">
@@ -219,26 +260,36 @@
                             <label for="upload-assignment-name-both">Assignment Name</label>
                             <input type="text" id="upload-assignment-name-both" placeholder="e.g., Midterm Physics">
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="section-label">Question Paper Upload</div>
                             <div class="file-input-wrapper">
-                                <input type="file" id="upload-question-paper-both" accept=".pdf,.pptx,.png,.jpg,.jpeg,.webp">
-                                <label for="upload-question-paper-both" class="file-input-label"><i class="fas fa-upload"></i> <span id="upload-question-paper-name-both">Choose file...</span></label>
+                                <input type="file" id="upload-question-paper-both"
+                                    accept=".pdf,.pptx,.png,.jpg,.jpeg,.webp">
+                                <label for="upload-question-paper-both" class="file-input-label"><i
+                                        class="fas fa-upload"></i> <span id="upload-question-paper-name-both">Choose
+                                        file...</span></label>
                             </div>
-                            <button id="scan-question-paper-both-btn" class="btn btn-secondary" style="margin-top: 8px;"><i class="fas fa-camera"></i> Scan Question Paper with Webcam</button>
+                            <button id="scan-question-paper-both-btn" class="btn btn-secondary"
+                                style="margin-top: 8px;"><i class="fas fa-camera"></i> Scan Question Paper with
+                                Webcam</button>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="section-label">Reference Answers Upload</div>
                             <div class="file-input-wrapper">
                                 <input type="file" id="upload-reference-answers" accept=".pdf,.png,.jpg,.jpeg,.webp">
-                                <label for="upload-reference-answers" class="file-input-label"><i class="fas fa-upload"></i> <span id="upload-reference-answers-name">Choose file...</span></label>
+                                <label for="upload-reference-answers" class="file-input-label"><i
+                                        class="fas fa-upload"></i> <span id="upload-reference-answers-name">Choose
+                                        file...</span></label>
                             </div>
-                            <button id="scan-reference-answers-btn" class="btn btn-secondary" style="margin-top: 8px;"><i class="fas fa-camera"></i> Scan Reference Answers with Webcam</button>
+                            <button id="scan-reference-answers-btn" class="btn btn-secondary"
+                                style="margin-top: 8px;"><i class="fas fa-camera"></i> Scan Reference Answers with
+                                Webcam</button>
                         </div>
-                        
-                        <button id="upload-assignment-btn" class="btn btn-primary"><i class="fas fa-cloud-arrow-up"></i> Upload Both Files</button>
+
+                        <button id="upload-assignment-btn" class="btn btn-primary"><i class="fas fa-cloud-arrow-up"></i>
+                            Upload Both Files</button>
                     </div>
                 </div>
 
@@ -248,21 +299,24 @@
                         <select id="assignment-select">
                             <option value="">-- Loading Assignments --</option>
                         </select>
-                        <button id="refresh-assignments-btn" class="btn btn-secondary" style="margin-top:8px;"><i class="fas fa-rotate"></i> Refresh Assignments</button>
+                        <button id="refresh-assignments-btn" class="btn btn-secondary" style="margin-top:8px;"><i
+                                class="fas fa-rotate"></i> Refresh Assignments</button>
                     </div>
                     <div class="form-group">
                         <label for="class-select">Select Class</label>
                         <select id="class-select">
                             <option value="">-- Loading Classes --</option>
                         </select>
-                        <button id="refresh-class-btn" class="btn btn-secondary" style="margin-top:8px;"><i class="fas fa-rotate"></i> Refresh Classes</button>
+                        <button id="refresh-class-btn" class="btn btn-secondary" style="margin-top:8px;"><i
+                                class="fas fa-rotate"></i> Refresh Classes</button>
                     </div>
                     <div class="form-group">
                         <label for="student-select">Select Student</label>
                         <select id="student-select" disabled>
                             <option value="">-- Select Class First --</option>
                         </select>
-                        <button id="refresh-students-btn" class="btn btn-secondary" style="margin-top:8px;" disabled><i class="fas fa-rotate"></i> Refresh Students</button>
+                        <button id="refresh-students-btn" class="btn btn-secondary" style="margin-top:8px;" disabled><i
+                                class="fas fa-rotate"></i> Refresh Students</button>
                     </div>
                     <div class="form-group">
                         <label for="remarks-input">Remarks (optional)</label>
@@ -273,9 +327,11 @@
                         <div class="section-label">Upload Student Answer Sheet</div>
                         <div class="file-input-wrapper">
                             <input type="file" id="student-sheet-file" accept="image/*,.pdf">
-                            <label for="student-sheet-file" class="file-input-label"><i class="fas fa-upload"></i> <span id="student-file-name">Choose file...</span></label>
+                            <label for="student-sheet-file" class="file-input-label"><i class="fas fa-upload"></i> <span
+                                    id="student-file-name">Choose file...</span></label>
                         </div>
-                        <button id="scan-btn" class="btn btn-secondary" style="margin-top: 8px;"><i class="fas fa-camera"></i> Scan with Webcam</button>
+                        <button id="scan-btn" class="btn btn-secondary" style="margin-top: 8px;"><i
+                                class="fas fa-camera"></i> Scan with Webcam</button>
                     </div>
 
                     <button id="grade-btn" class="btn btn-primary"><i class="fas fa-award"></i> Grade Paper</button>
@@ -288,16 +344,18 @@
             <div class="status-bar">
                 <p id="status-text">Welcome! Ready to get started.</p>
             </div>
-            
+
             <div class="content-area">
                 <div id="generated-content-view">
                     <div class="content-column">
                         <h2>📝 Generated Question Paper</h2>
-                        <textarea id="generated-questions-output" placeholder="AI-generated questions will appear here..."></textarea>
+                        <textarea id="generated-questions-output"
+                            placeholder="AI-generated questions will appear here..."></textarea>
                     </div>
                     <div class="content-column">
                         <h2>🔑 Generated Reference Answers</h2>
-                        <textarea id="generated-answers-output" placeholder="AI-generated answers will appear here..."></textarea>
+                        <textarea id="generated-answers-output"
+                            placeholder="AI-generated answers will appear here..."></textarea>
                     </div>
                 </div>
 
@@ -308,11 +366,11 @@
                             <p id="legibility-output">Awaiting analysis...</p>
                         </div>
                         <div class="result-card">
-                             <h3><i class="fas fa-check-double"></i> AI Fairness Check</h3>
+                            <h3><i class="fas fa-check-double"></i> AI Fairness Check</h3>
                             <p id="fairness-output">Awaiting analysis...</p>
                         </div>
                     </div>
-                     <div class="result-card ocr-card">
+                    <div class="result-card ocr-card">
                         <h3><i class="fas fa-eye"></i> Extracted Text (OCR)</h3>
                         <textarea id="ocr-output" readonly>Awaiting analysis...</textarea>
                     </div>
@@ -326,4 +384,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

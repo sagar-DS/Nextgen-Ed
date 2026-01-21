@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .favicon-preview { width: 32px; height: 32px; background: #4F46E5; border-radius: 4px; display: inline-block; text-align: center; line-height: 32px; color: white; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>🎓 Nextgen Ed Favicon Generator</h1>
+    <p>This creates a simple favicon for your application.</p>
+    
+    <div class="favicon-preview">🎓</div>
+    <p>Preview of the favicon</p>
+    
+    <h2>Instructions:</h2>
+    <ol>
+        <li>Right-click on the preview above</li>
+        <li>Save as "favicon.ico"</li>
+        <li>Place it in your project root directory</li>
+    </ol>
+    
+    <h2>Alternative: Use SVG Favicon</h2>
+    <p>You can also use the favicon.svg file which is already created.</p>
+    
+    <script>
+        // Create a canvas to generate favicon
+        const canvas = document.createElement('canvas');
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        
+        // Draw background
+        ctx.fillStyle = '#4F46E5';
+        ctx.fillRect(0, 0, 32, 32);
+        
+        // Draw graduation cap emoji
+        ctx.fillStyle = 'white';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('🎓', 16, 22);
+        
+        // Convert to data URL
+        const dataURL = canvas.toDataURL('image/png');
+        
+        // Create download link
+        const link = document.createElement('a');
+        link.download = 'favicon.png';
+        link.href = dataURL;
+        link.textContent = 'Download favicon.png';
+        link.style.display = 'block';
+        link.style.margin = '10px 0';
+        document.body.appendChild(link);
+    </script>
+</body>
+</html>

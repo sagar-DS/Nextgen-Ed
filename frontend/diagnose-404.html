@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Diagnostic Tool - Nextgen Ed</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .diagnostic-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 3px; }
+        .url-test { font-family: monospace; background: #f8f9fa; padding: 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 404 Diagnostic Tool</h1>
+    <p>This tool will help identify and fix 404 errors in your Nextgen Ed application.</p>
+    
+    <div class="diagnostic-section info">
+        <h3>📋 How to Use This Tool</h3>
+        <ol>
+            <li>Open Chrome DevTools (F12)</li>
+            <li>Go to the Network tab</li>
+            <li>Refresh this page</li>
+            <li>Look for red entries (404 errors)</li>
+            <li>Note the URL of the failing resource</li>
+            <li>Use the tools below to test and fix the issue</li>
+        </ol>
+    </div>
+    
+    <div class="diagnostic-section">
+        <h3>📁 Local File Check</h3>
+        <button onclick="checkLocalFiles()">Check All Local Files</button>
+        <div id="local-results"></div>
+    </div>
+    
+    <div class="diagnostic-section">
+        <h3>🌐 External Resource Check</h3>
+        <button onclick="checkExternalResources()">Check External Resources</button>
+        <div id="external-results"></div>
+    </div>
+    
+    <div class="diagnostic-section">
+        <h3>🔗 API Endpoint Check</h3>
+        <button onclick="checkAPIEndpoints()">Check API Endpoints</button>
+        <div id="api-results"></div>
+    </div>
+    
+    <div class="diagnostic-section">
+        <h3>🎯 Custom URL Test</h3>
+        <p>Enter a specific URL that's causing a 404 error:</p>
+        <input type="text" id="custom-url" placeholder="Enter URL here..." style="width: 300px; padding: 5px;">
+        <button onclick="testCustomURL()">Test URL</button>
+        <div id="custom-results"></div>
+    </div>
+    
+    <div class="diagnostic-section">
+        <h3>📊 Network Monitor</h3>
+        <p>Open Chrome DevTools (F12) → Network tab → Refresh this page to see all network requests and identify 404 errors.</p>
+        <button onclick="window.location.reload()">Refresh Page</button>
+    </div>
+
+    <script>
+        const localFiles = [
+            'index.html',
+            'login.html',
+            'script.js',
+            'style.css',
+            'auth.css',
+            'auth.js',
+            'favicon.ico',
+            'favicon.svg',
+            'favicon.png'
+        ];
+        
+        const externalResources = [
+            'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+        ];
+        
+        const apiEndpoints = [
+            'https://nextgen-ed.onrender.com/',
+            'https://nextgen-ed.onrender.com/cors-test',
+            'https://nextgen-ed.onrender.com/ai-test'
+        ];
+        
+        async function checkLocalFiles() {
+            const results = document.getElementById('local-results');
+            results.innerHTML = '<p>Checking local files...</p>';
+            
+            let html = '<h4>Local File Check Results:</h4>';
+            
+            for (const file of localFiles) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<div class="result success">✅ ${file} - Found (${response.status})</div>`;
+                    } else {
+                        html += `<div class="result error">❌ ${file} - Error (${response.status})</div>`;
+                    }
+                } catch (error) {
+                    html += `<div class="result error">❌ ${file} - Network Error: ${error.message}</div>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        async function checkExternalResources() {
+            const results = document.getElementById('external-results');
+            results.innerHTML = '<p>Checking external resources...</p>';
+            
+            let html = '<h4>External Resource Check Results:</h4>';
+            
+            for (const resource of externalResources) {
+                try {
+                    const response = await fetch(resource, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<div class="result success">✅ ${resource} - Available (${response.status})</div>`;
+                    } else {
+                        html += `<div class="result warning">⚠️ ${resource} - Response (${response.status})</div>`;
+                    }
+                } catch (error) {
+                    html += `<div class="result error">❌ ${resource} - Error: ${error.message}</div>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        async function checkAPIEndpoints() {
+            const results = document.getElementById('api-results');
+            results.innerHTML = '<p>Checking API endpoints...</p>';
+            
+            let html = '<h4>API Endpoint Check Results:</h4>';
+            
+            for (const endpoint of apiEndpoints) {
+                try {
+                    const response = await fetch(endpoint, { method: 'GET' });
+                    if (response.ok) {
+                        html += `<div class="result success">✅ ${endpoint} - Connected (${response.status})</div>`;
+                    } else {
+                        html += `<div class="result warning">⚠️ ${endpoint} - Response (${response.status})</div>`;
+                    }
+                } catch (error) {
+                    html += `<div class="result error">❌ ${endpoint} - Error: ${error.message}</div>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        async function testCustomURL() {
+            const url = document.getElementById('custom-url').value;
+            const results = document.getElementById('custom-results');
+            
+            if (!url) {
+                results.innerHTML = '<div class="result error">Please enter a URL to test.</div>';
+                return;
+            }
+            
+            results.innerHTML = '<p>Testing custom URL...</p>';
+            
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                if (response.ok) {
+                    results.innerHTML = `<div class="result success">✅ ${url} - Found (${response.status})</div>`;
+                } else {
+                    results.innerHTML = `<div class="result error">❌ ${url} - Error (${response.status})</div>`;
+                }
+            } catch (error) {
+                results.innerHTML = `<div class="result error">❌ ${url} - Network Error: ${error.message}</div>`;
+            }
+        }
+        
+        // Auto-run local file check on page load
+        window.onload = function() {
+            checkLocalFiles();
+        };
+    </script>
+</body>
+</html>

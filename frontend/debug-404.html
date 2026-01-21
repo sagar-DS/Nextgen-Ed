@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Debug Tool - Nextgen Ed</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 404 Debug Tool</h1>
+    <p>This tool will help diagnose 404 errors in your Nextgen Ed application.</p>
+    
+    <div class="debug-section">
+        <h3>📁 File Existence Check</h3>
+        <button onclick="checkFiles()">Check All Files</button>
+        <div id="file-results"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>🌐 API Connectivity Check</h3>
+        <button onclick="checkAPI()">Test API Connection</button>
+        <div id="api-results"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>🔗 Resource Loading Check</h3>
+        <button onclick="checkResources()">Check All Resources</button>
+        <div id="resource-results"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>📊 Network Monitor</h3>
+        <p>Open Chrome DevTools (F12) → Network tab → Refresh this page to see all network requests.</p>
+        <button onclick="window.location.reload()">Refresh Page</button>
+    </div>
+
+    <script>
+        const filesToCheck = [
+            'index.html',
+            'login.html', 
+            'script.js',
+            'style.css',
+            'auth.css',
+            'auth.js',
+            'favicon.ico',
+            'favicon.svg'
+        ];
+        
+        const resourcesToCheck = [
+            'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'
+        ];
+        
+        async function checkFiles() {
+            const results = document.getElementById('file-results');
+            results.innerHTML = '<p>Checking files...</p>';
+            
+            let html = '<h4>File Check Results:</h4>';
+            
+            for (const file of filesToCheck) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<p class="success">✅ ${file} - Found (${response.status})</p>`;
+                    } else {
+                        html += `<p class="error">❌ ${file} - Error (${response.status})</p>`;
+                    }
+                } catch (error) {
+                    html += `<p class="error">❌ ${file} - Network Error: ${error.message}</p>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        async function checkAPI() {
+            const results = document.getElementById('api-results');
+            results.innerHTML = '<p>Testing API connection...</p>';
+            
+            const apiUrl = 'https://nextgen-ed.onrender.com';
+            let html = '<h4>API Check Results:</h4>';
+            
+            try {
+                const response = await fetch(`${apiUrl}/`, { method: 'GET' });
+                if (response.ok) {
+                    html += `<p class="success">✅ API Root - Connected (${response.status})</p>`;
+                } else {
+                    html += `<p class="warning">⚠️ API Root - Response (${response.status})</p>`;
+                }
+            } catch (error) {
+                html += `<p class="error">❌ API Root - Error: ${error.message}</p>`;
+            }
+            
+            try {
+                const response = await fetch(`${apiUrl}/cors-test`, { method: 'GET' });
+                if (response.ok) {
+                    html += `<p class="success">✅ CORS Test - Working (${response.status})</p>`;
+                } else {
+                    html += `<p class="warning">⚠️ CORS Test - Response (${response.status})</p>`;
+                }
+            } catch (error) {
+                html += `<p class="error">❌ CORS Test - Error: ${error.message}</p>`;
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        async function checkResources() {
+            const results = document.getElementById('resource-results');
+            results.innerHTML = '<p>Checking external resources...</p>';
+            
+            let html = '<h4>Resource Check Results:</h4>';
+            
+            for (const resource of resourcesToCheck) {
+                try {
+                    const response = await fetch(resource, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<p class="success">✅ ${resource} - Available (${response.status})</p>`;
+                    } else {
+                        html += `<p class="warning">⚠️ ${resource} - Response (${response.status})</p>`;
+                    }
+                } catch (error) {
+                    html += `<p class="error">❌ ${resource} - Error: ${error.message}</p>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+        
+        // Auto-run file check on page load
+        window.onload = function() {
+            checkFiles();
+        };
+    </script>
+</body>
+</html>

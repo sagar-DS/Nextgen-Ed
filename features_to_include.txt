@@ -1,0 +1,50 @@
+# Teacher-Facing Features 🧑‍🏫
+
+1. User Accounts: A full authentication system for teachers to register, log in, and manage only their own assignments and students.
+
+2. Teacher Override: The ability for a teacher to edit the AI-generated scores and feedback for each question before saving the final grade.
+
+3. Per-Question Scoring: Moving from a single final score to a detailed breakdown where the AI provides an editable score for each individual question.
+
+4. Settable Total Score: An option for the teacher to set the total possible marks for an assignment when they create it.
+
+5. Classroom Analytics Dashboard: A dashboard showing class-wide insights like average score, score distribution (e.g., A's, B's, C's), and the most commonly missed concepts.
+
+6. Rubric-Based Grading: Allowing teachers to provide a specific rubric that the AI must follow when grading.
+
+7. Adaptive Grading Levels: A "level setter" (e.g., "Strict," "Standard," "Lenient") to control the harshness of the AI's grading.
+
+8. Smart Batch Upload: Enabling teachers to upload an entire class's papers at once, with the AI automatically identifying the student's name and enrollment number on each paper.
+
+9. Display Model Answers During Grading: The ability for a teacher to see the assignment's questions and model answers on the same screen while reviewing a student's submission.
+
+---
+
+# Student-Facing Features 🎒
+
+1. Student Portal: A separate login for students where they can view their graded papers, scores, and the AI's detailed feedback.
+
+2. Student Rechecking System: An option for students to pay a small fee to request a manual re-evaluation from the teacher. If the original grade was wrong, the fee would be refunded.
+
+---
+
+# Core System & AI Enhancements ⚙️
+
+1. Professional Database: Upgrading from a simple JSON file to a scalable, professional database like PostgreSQL to securely manage all application data.
+
+2. Store Student Papers: Storing the uploaded image of each student's answer sheet (likely in cloud storage) and linking it to their grade for a permanent record.
+
+3. Automatic Image Enhancement: A pre-processing step to automatically increase the contrast and sharpness of uploaded papers, making it easier for the AI to read the text.
+
+4. Diagram Understanding & Evaluation: The AI's ability to analyze and grade diagrams drawn by students, not just written text.
+
+5. Diagram-Based Question Generation: The ability for the AI to create questions that specifically require a diagram in the answer and to also generate a reference diagram for the model answer.
+
+6. Improved Text Formatting: Making the AI-generated text in question papers and answer keys more readable by improving spacing and layout.
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+# Netlify redirects file
+# This ensures favicon files are served correctly
+
+/favicon.ico /favicon.ico 200
+/favicon.svg /favicon.svg 200
+/favicon.png /favicon.png 200
+
+# Fallback for any other favicon requests
+/favicon* /favicon.ico 200

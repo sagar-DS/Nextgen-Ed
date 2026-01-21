@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Check - Nextgen Ed</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .url-test { font-family: monospace; background: #f8f9fa; padding: 5px; border-radius: 3px; margin: 5px 0; }
+        .status-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .status-success { background-color: #28a745; }
+        .status-error { background-color: #dc3545; }
+        .status-pending { background-color: #ffc107; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Deployment Check - Nextgen Ed</h1>
+    <p>This tool checks if your favicon fix has been deployed to Netlify.</p>
+    
+    <div class="test-section info">
+        <h3>📋 Quick Manual Tests</h3>
+        <p>Click these links to test if favicon files are accessible:</p>
+        <ul>
+            <li><a href="https://nextgen-ed.netlify.app/favicon.ico" target="_blank">Test favicon.ico</a></li>
+            <li><a href="https://nextgen-ed.netlify.app/favicon.svg" target="_blank">Test favicon.svg</a></li>
+            <li><a href="https://nextgen-ed.netlify.app/favicon.png" target="_blank">Test favicon.png</a></li>
+        </ul>
+        <p><strong>Expected:</strong> Files should load (not show 404 error)</p>
+    </div>
+    
+    <div class="test-section">
+        <h3>🔍 Automated Tests</h3>
+        <button onclick="runAutomatedTests()">Run Automated Tests</button>
+        <div id="automated-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🌐 Live Site Tests</h3>
+        <button onclick="testLiveSite()">Test Live Site</button>
+        <div id="live-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>📊 Deployment Status</h3>
+        <div id="deployment-status">
+            <p><span class="status-indicator status-pending"></span>Click "Run Automated Tests" to check deployment status</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🎯 Browser Tab Test</h3>
+        <p>Visit your main site and check if the favicon appears in the browser tab:</p>
+        <a href="https://nextgen-ed.netlify.app/" target="_blank">Open Nextgen Ed Site</a>
+        <p><strong>Expected:</strong> Graduation cap icon (🎓) should appear in the browser tab</p>
+    </div>
+
+    <script>
+        async function runAutomatedTests() {
+            const results = document.getElementById('automated-results');
+            const status = document.getElementById('deployment-status');
+            
+            results.innerHTML = '<p>Running automated tests...</p>';
+            status.innerHTML = '<p><span class="status-indicator status-pending"></span>Testing deployment...</p>';
+            
+            const tests = [
+                { name: 'favicon.ico', url: 'https://nextgen-ed.netlify.app/favicon.ico' },
+                { name: 'favicon.svg', url: 'https://nextgen-ed.netlify.app/favicon.svg' },
+                { name: 'favicon.png', url: 'https://nextgen-ed.netlify.app/favicon.png' },
+                { name: 'Main Site', url: 'https://nextgen-ed.netlify.app/' }
+            ];
+            
+            let html = '<h4>Automated Test Results:</h4>';
+            let allPassed = true;
+            
+            for (const test of tests) {
+                try {
+                    const response = await fetch(test.url, { method: 'HEAD' });
+                    if (response.ok) {
+                        html += `<div class="success" style="padding: 10px; margin: 5px 0; border-radius: 3px;">
+                            ✅ ${test.name} - Accessible (${response.status})
+                        </div>`;
+                    } else {
+                        html += `<div class="error" style="padding: 10px; margin: 5px 0; border-radius: 3px;">
+                            ❌ ${test.name} - Error (${response.status})
+                        </div>`;
+                        allPassed = false;
+                    }
+                } catch (error) {
+                    html += `<div class="error" style="padding: 10px; margin: 5px 0; border-radius: 3px;">
+                        ❌ ${test.name} - Network Error: ${error.message}
+                    </div>`;
+                    allPassed = false;
+                }
+            }
+            
+            results.innerHTML = html;
+            
+            if (allPassed) {
+                status.innerHTML = '<p><span class="status-indicator status-success"></span>✅ Deployment successful! All favicon files are accessible.</p>';
+            } else {
+                status.innerHTML = '<p><span class="status-indicator status-error"></span>❌ Some issues found. Check the results above.</p>';
+            }
+        }
+        
+        async function testLiveSite() {
+            const results = document.getElementById('live-results');
+            results.innerHTML = '<p>Testing live site...</p>';
+            
+            try {
+                const response = await fetch('https://nextgen-ed.netlify.app/', { method: 'GET' });
+                if (response.ok) {
+                    results.innerHTML = `
+                        <div class="success" style="padding: 10px; margin: 5px 0; border-radius: 3px;">
+                            ✅ Main site is accessible (${response.status})
+                            <br><a href="https://nextgen-ed.netlify.app/" target="_blank">Open Site</a>
+                        </div>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <div class="error" style="padding: 10px; margin: 5px 0; border-radius: 3px;">
+                            ❌ Main site error (${response.status})
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error" style="padding: 10px; margin: 5px 0; border-radius: 3px;">
+                        ❌ Network error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-run tests on page load
+        window.onload = function() {
+            runAutomatedTests();
+        };
+    </script>
+</body>
+</html>
+

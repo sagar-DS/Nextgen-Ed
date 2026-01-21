@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator for Netlify</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .favicon-preview { width: 32px; height: 32px; background: #4F46E5; border-radius: 4px; display: inline-block; text-align: center; line-height: 32px; color: white; font-size: 16px; margin: 10px; }
+        .instructions { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🎓 Nextgen Ed Favicon Generator</h1>
+    <p>This tool helps create a proper favicon.ico for your Netlify deployment.</p>
+    
+    <div class="favicon-preview">🎓</div>
+    <p>Preview of the favicon</p>
+    
+    <div class="instructions">
+        <h3>Instructions for Netlify Deployment:</h3>
+        <ol>
+            <li>Click the "Generate Favicon" button below</li>
+            <li>Save the generated favicon.ico file</li>
+            <li>Replace the existing favicon.ico in your frontend directory</li>
+            <li>Deploy to Netlify</li>
+        </ol>
+    </div>
+    
+    <button onclick="generateFavicon()">Generate Favicon</button>
+    <div id="result"></div>
+    
+    <script>
+        function generateFavicon() {
+            // Create a canvas to generate favicon
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            
+            // Draw background
+            ctx.fillStyle = '#4F46E5';
+            ctx.fillRect(0, 0, 32, 32);
+            
+            // Draw graduation cap emoji
+            ctx.fillStyle = 'white';
+            ctx.font = '16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🎓', 16, 22);
+            
+            // Convert to data URL
+            const dataURL = canvas.toDataURL('image/png');
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'favicon.ico';
+            link.href = dataURL;
+            link.textContent = 'Download favicon.ico';
+            link.style.display = 'block';
+            link.style.margin = '10px 0';
+            link.style.padding = '10px';
+            link.style.background = '#28a745';
+            link.style.color = 'white';
+            link.style.textDecoration = 'none';
+            link.style.borderRadius = '3px';
+            
+            document.getElementById('result').innerHTML = '<h3>Generated Favicon:</h3>';
+            document.getElementById('result').appendChild(link);
+        }
+    </script>
+</body>
+</html>
